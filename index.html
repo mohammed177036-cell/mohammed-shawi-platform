@@ -2,336 +2,281 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>منصة الأستاذ محمد الشاوي التعليمية</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-:root {
-  --navy:#102b50;
-  --blue:#1d4e80;
-  --cyan:#80c6e4;
-  --bg:#f3f6fb;
-  --white:#fff;
-}
-
 *{box-sizing:border-box}
-
-body{
- margin:0;
- font-family:Tahoma,Arial,sans-serif;
- background:var(--bg);
- color:#18283d;
-}
-
-header{
- background:var(--navy);
- color:white;
- padding:18px 6%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- flex-wrap:wrap;
- gap:15px;
-}
-
-.brand{
- font-size:21px;
- font-weight:bold;
-}
-
-.brand span{color:var(--cyan)}
-
-nav a{
- color:white;
- text-decoration:none;
- margin:8px;
- font-size:14px;
-}
-
-.hero{
- background:linear-gradient(125deg,#102b50,#245d8d);
- color:white;
- padding:65px 7%;
-}
-
-.hero h1{
- font-size:32px;
- line-height:1.7;
- margin:0;
-}
-
-.hero p{
- color:#d7e6f4;
- line-height:2;
- font-size:17px;
-}
-
-.btn{
- display:inline-block;
- background:var(--cyan);
- color:var(--navy);
- padding:14px 25px;
- border-radius:9px;
- text-decoration:none;
- font-weight:bold;
- margin-top:15px;
- border:0;
- cursor:pointer;
-}
-
+body{margin:0;font-family:Tahoma,Arial;background:#f3f6fb;color:#18283d}
+header{background:#102b50;color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.brand{font-size:21px;font-weight:bold}
+.brand span{color:#80c6e4}
+nav a{color:white;text-decoration:none;margin:8px}
+.hero{background:linear-gradient(120deg,#102b50,#245d8d);color:white;padding:65px 7%}
+.hero h1{font-size:30px;line-height:1.7}
+.hero p{line-height:2;color:#d7e6f4}
+.btn{display:inline-block;background:#80c6e4;color:#102b50;padding:14px 24px;border-radius:9px;text-decoration:none;border:0;font-weight:bold;cursor:pointer}
 section{padding:40px 7%}
-
-.title{
- text-align:center;
- color:var(--navy);
- font-size:25px;
- margin-bottom:30px;
-}
-
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
- gap:18px;
-}
-
-.card{
- background:white;
- padding:25px;
- border-radius:15px;
- text-align:center;
- box-shadow:0 5px 20px #102b5010;
- border:1px solid #e7edf5;
-}
-
-.card h3{color:var(--navy)}
-
-.card p{
- color:#718096;
- line-height:1.8;
-}
-
+.title{text-align:center;color:#102b50;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:white;padding:25px;border-radius:14px;text-align:center;box-shadow:0 4px 18px #102b5010}
+.card h3{color:#102b50}
 .icon{font-size:38px}
-
-.card button{
- background:var(--navy);
- color:white;
- border:0;
- border-radius:8px;
- padding:12px 20px;
- cursor:pointer;
- margin-top:10px;
-}
-
-.login-box{
- max-width:480px;
- margin:auto;
- padding:28px;
- background:white;
- border-radius:15px;
- box-shadow:0 5px 25px #102b5010;
-}
-
-input,select{
- width:100%;
- padding:14px;
- margin:9px 0;
- border:1px solid #dce3ec;
- border-radius:8px;
- font-size:15px;
- background:white;
-}
-
-.login-box button{
- width:100%;
- padding:14px;
- background:var(--navy);
- color:white;
- border:0;
- border-radius:8px;
- font-size:16px;
- cursor:pointer;
- margin-top:10px;
-}
-
-.features{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
- gap:15px;
-}
-
-.feature{
- background:white;
- padding:22px;
- border-radius:12px;
- text-align:center;
-}
-
-footer{
- background:var(--navy);
- color:white;
- text-align:center;
- padding:25px;
- line-height:2;
-}
-
-@media(max-width:600px){
- .hero h1{font-size:25px}
- nav{width:100%}
- nav a{margin:5px}
-}
+.card p{color:#718096;line-height:1.8}
+.card button{background:#102b50;color:white;border:0;padding:12px 20px;border-radius:8px;cursor:pointer}
+.login-box{max-width:480px;margin:auto;background:white;padding:28px;border-radius:16px;box-shadow:0 5px 25px #102b5010}
+input{width:100%;padding:15px;margin:10px 0;border:1px solid #dce3ec;border-radius:9px;font-size:16px}
+.login-box button{width:100%;padding:15px;background:#102b50;color:white;border:0;border-radius:9px;font-size:17px;cursor:pointer}
+#message{text-align:center;line-height:1.8}
+#dashboard{display:none}
+.dashboard-card{background:white;padding:22px;border-radius:13px;margin:12px 0}
+.exam{background:#f3f6fb;padding:15px;border-radius:10px;margin:10px 0}
+.logout{background:#a52b2b!important;margin-top:15px}
+footer{background:#102b50;color:white;text-align:center;padding:25px;line-height:2}
+@media(max-width:600px){.hero h1{font-size:24px}nav{width:100%}}
 </style>
 </head>
 
 <body>
 
 <header>
- <div class="brand">الأستاذ محمد <span>الشاوي</span></div>
- <nav>
-  <a href="#home">الرئيسية</a>
-  <a href="#classes">الصفوف</a>
-  <a href="#features">المميزات</a>
-  <a href="#login">تسجيل الدخول</a>
- </nav>
+<div class="brand">الأستاذ محمد <span>الشاوي</span></div>
+<nav>
+<a href="#home">الرئيسية</a>
+<a href="#classes">الصفوف</a>
+<a href="#features">الخدمات</a>
+<a href="#login">دخول</a>
+</nav>
 </header>
 
 <div class="hero" id="home">
- <h1>منصة الأستاذ محمد الشاوي التعليمية</h1>
- <p>
-  تعلم الكيمياء بطريقة تفاعلية ومميزة.<br>
-  محاضرات، امتحانات إلكترونية، متابعة الدرجات والحضور.
- </p>
- <a href="#classes" class="btn">ابدأ رحلتك التعليمية</a>
+<h1>منصة الأستاذ محمد الشاوي التعليمية</h1>
+<p>
+بوابتك نحو التفوق والنجاح.<br>
+تعليم الكيمياء للمرحلة المتوسطة والثالث المتوسط الخارجي.
+</p>
+<a href="#classes" class="btn">استكشف الصفوف</a>
 </div>
 
 <section id="classes">
- <h2 class="title">الصفوف الدراسية</h2>
+<h2 class="title">الصفوف الدراسية</h2>
+<div class="grid">
 
- <div class="grid">
+<div class="card">
+<div class="icon">🧪</div>
+<h3>الأول المتوسط</h3>
+<p>بنين وبنات</p>
+</div>
 
-  <div class="card">
-   <div class="icon">🧪</div>
-   <h3>الأول المتوسط</h3>
-   <p>بنين وبنات</p>
-   <button onclick="chooseClass('الأول المتوسط')">الدخول للصف</button>
-  </div>
+<div class="card">
+<div class="icon">⚗️</div>
+<h3>الثاني المتوسط</h3>
+<p>بنين وبنات</p>
+</div>
 
-  <div class="card">
-   <div class="icon">⚗️</div>
-   <h3>الثاني المتوسط</h3>
-   <p>بنين وبنات</p>
-   <button onclick="chooseClass('الثاني المتوسط')">الدخول للصف</button>
-  </div>
+<div class="card">
+<div class="icon">🎓</div>
+<h3>الثالث المتوسط</h3>
+<p>بنين وبنات</p>
+</div>
 
-  <div class="card">
-   <div class="icon">🎓</div>
-   <h3>الثالث المتوسط</h3>
-   <p>بنين وبنات</p>
-   <button onclick="chooseClass('الثالث المتوسط')">الدخول للصف</button>
-  </div>
+<div class="card">
+<div class="icon">📚</div>
+<h3>الثالث الخارجي</h3>
+<p>بنين وبنات</p>
+</div>
 
-  <div class="card">
-   <div class="icon">📚</div>
-   <h3>الثالث الخارجي</h3>
-   <p>بنين وبنات</p>
-   <button onclick="chooseClass('الثالث الخارجي')">الدخول للصف</button>
-  </div>
-
- </div>
+</div>
 </section>
 
 <section id="features">
- <h2 class="title">خدمات المنصة</h2>
-
- <div class="features">
-  <div class="feature">
-   <div class="icon">🎥</div>
-   <h3>المحاضرات المباشرة</h3>
-   <p>دروس إلكترونية تفاعلية.</p>
-  </div>
-
-  <div class="feature">
-   <div class="icon">📝</div>
-   <h3>الامتحانات</h3>
-   <p>اختبارات إلكترونية محددة الوقت.</p>
-  </div>
-
-  <div class="feature">
-   <div class="icon">📊</div>
-   <h3>الدرجات</h3>
-   <p>متابعة النتائج والتحصيل الدراسي.</p>
-  </div>
-
-  <div class="feature">
-   <div class="icon">📸</div>
-   <h3>الحلول المصورة</h3>
-   <p>رفع صور الحلول الكتابية.</p>
-  </div>
-
-  <div class="feature">
-   <div class="icon">👨‍👩‍👧</div>
-   <h3>ولي الأمر</h3>
-   <p>متابعة مستوى الطالب وحضوره.</p>
-  </div>
-
-  <div class="feature">
-   <div class="icon">🔔</div>
-   <h3>الإشعارات</h3>
-   <p>متابعة مواعيد المحاضرات والامتحانات.</p>
-  </div>
- </div>
+<h2 class="title">خدمات المنصة</h2>
+<div class="grid">
+<div class="card"><div class="icon">🎥</div><h3>المحاضرات</h3><p>الدروس التعليمية المباشرة.</p></div>
+<div class="card"><div class="icon">📝</div><h3>الامتحانات</h3><p>اختبارات إلكترونية محددة الوقت.</p></div>
+<div class="card"><div class="icon">📊</div><h3>الدرجات</h3><p>متابعة النتائج والتحصيل.</p></div>
+<div class="card"><div class="icon">👨‍👩‍👧</div><h3>ولي الأمر</h3><p>متابعة حضور ونتائج الطالب.</p></div>
+</div>
 </section>
 
 <section id="login">
- <h2 class="title">تسجيل الدخول</h2>
+<h2 class="title">تسجيل الدخول</h2>
 
- <div class="login-box">
-  <h3>مرحباً بك في المنصة</h3>
+<div class="login-box" id="loginBox">
+<h3>مرحباً بك في المنصة</h3>
 
-  <input id="phone" type="tel"
-   placeholder="رقم الهاتف">
+<input id="phone" type="tel" placeholder="رقم الهاتف العراقي">
+<input id="password" type="password" placeholder="كلمة المرور">
 
-  <input id="password" type="password"
-   placeholder="كلمة المرور">
+<button id="loginButton" onclick="login()">تسجيل الدخول</button>
+<p id="message"></p>
+</div>
 
-  <select id="role">
-   <option value="">نوع الحساب</option>
-   <option value="student">طالب</option>
-   <option value="parent">ولي أمر</option>
-   <option value="teacher">أستاذ</option>
-  </select>
+<div id="dashboard">
+<div class="dashboard-card">
+<h2 id="welcome">مرحباً بك</h2>
+<p id="userRole"></p>
+</div>
 
-  <select id="grade">
-   <option value="">الصف الدراسي</option>
-   <option>الأول المتوسط</option>
-   <option>الثاني المتوسط</option>
-   <option>الثالث المتوسط</option>
-   <option>الثالث الخارجي</option>
-  </select>
+<div class="dashboard-card">
+<h3>الامتحانات المنشورة</h3>
+<div id="examsList">جاري تحميل الامتحانات...</div>
+</div>
 
-  <button onclick="login()">تسجيل الدخول</button>
-
-  <p id="message" style="text-align:center;color:#b33"></p>
- </div>
+<button class="logout" onclick="logout()">تسجيل الخروج</button>
+</div>
 </section>
 
 <footer>
- <strong>منصة الأستاذ محمد الشاوي التعليمية</strong><br>
- بوابتك نحو التفوق والنجاح<br>
- جميع الحقوق محفوظة © 2026
+منصة الأستاذ محمد الشاوي التعليمية<br>
+جميع الحقوق محفوظة © 2026
 </footer>
 
 <script>
-function chooseClass(name){
- document.getElementById('grade').value=name;
- document.getElementById('login').scrollIntoView({
-  behavior:'smooth'
- });
+const SUPABASE_URL = 'https://qcotmpctlsitymotbmcr.supabase.co';
+
+const SUPABASE_KEY = 'sb_publishable_DM2B_YsALXf2QcVEzQ5fRg_dokmZXUP';
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+function normalizePhone(phone){
+  let p = phone.replace(/\s+/g,'').replace(/-/g,'');
+  if(p.startsWith('00964')) p = '+' + p.slice(2);
+  else if(p.startsWith('964')) p = '+' + p;
+  else if(p.startsWith('0')) p = '+964' + p.slice(1);
+  return p;
 }
 
-function login(){
- document.getElementById('message').textContent=
- 'سيتم تفعيل تسجيل الدخول بعد ربط النظام بقاعدة البيانات.';
+async function login(){
+  const phone = normalizePhone(
+    document.getElementById('phone').value
+  );
+
+  const password = document.getElementById('password').value;
+  const msg = document.getElementById('message');
+  const button = document.getElementById('loginButton');
+
+  if(!phone || !password){
+    msg.textContent = 'أدخل رقم الهاتف وكلمة المرور';
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'جارٍ تسجيل الدخول...';
+  msg.textContent = '';
+
+  try{
+    const {data,error} = await db.auth.signInWithPassword({
+      phone:phone,
+      password:password
+    });
+
+    if(error) throw error;
+
+    await showDashboard(data.user);
+
+  }catch(error){
+    msg.textContent = 'تعذر الدخول: ' + error.message;
+  }finally{
+    button.disabled = false;
+    button.textContent = 'تسجيل الدخول';
+  }
 }
+
+async function showDashboard(user){
+
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+
+  const {data:profile,error} = await db
+    .from('profiles')
+    .select('full_name,role')
+    .eq('id',user.id)
+    .maybeSingle();
+
+  if(error){
+    document.getElementById('welcome').textContent='مرحباً بك';
+    document.getElementById('userRole').textContent=
+      'تعذر تحميل بيانات الملف الشخصي.';
+    return;
+  }
+
+  if(!profile){
+    document.getElementById('welcome').textContent='الحساب غير مكتمل';
+    document.getElementById('userRole').textContent=
+      'يرجى التواصل مع الأستاذ لتفعيل ملفك.';
+    return;
+  }
+
+  document.getElementById('welcome').textContent=
+    'مرحباً ' + (profile.full_name || '');
+
+  document.getElementById('userRole').textContent=
+    'نوع الحساب: ' + profile.role;
+
+  await loadExams();
+}
+
+async function loadExams(){
+
+  const list=document.getElementById('examsList');
+
+  const {data,error}=await db
+    .from('exams')
+    .select('id,title,description,starts_at,duration_minutes')
+    .eq('is_published',true)
+    .order('starts_at',{ascending:true});
+
+  if(error){
+    list.textContent='تعذر تحميل الامتحانات: '+error.message;
+    return;
+  }
+
+  if(!data || data.length===0){
+    list.textContent='لا توجد امتحانات منشورة حالياً.';
+    return;
+  }
+
+  list.innerHTML='';
+
+  data.forEach(exam=>{
+    const item=document.createElement('div');
+    item.className='exam';
+
+    const title=document.createElement('h4');
+    title.textContent=exam.title;
+
+    const desc=document.createElement('p');
+    desc.textContent=exam.description || '';
+
+    const duration=document.createElement('p');
+    duration.textContent='المدة: '+exam.duration_minutes+' دقيقة';
+
+    item.append(title,desc,duration);
+    list.appendChild(item);
+  });
+}
+
+async function logout(){
+  await db.auth.signOut();
+
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginBox').style.display='block';
+}
+
+async function checkSession(){
+  const {data}=await db.auth.getSession();
+
+  if(data.session){
+    await showDashboard(data.session.user);
+  }
+}
+
+checkSession();
 </script>
 
 </body>
